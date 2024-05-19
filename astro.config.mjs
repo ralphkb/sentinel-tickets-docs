@@ -7,7 +7,7 @@ export default defineConfig({
     starlight({
       title: "Sentinel Tickets Docs",
       social: {
-        github: "https://github.com/ralphkb/sentinel-tickets",
+        github: "https://github.com/ralphkb/",
         discord: "https://discord.gg/vhXCzj9S3J",
       },
       sidebar: [
