@@ -1,0 +1,30 @@
+---
+title: Updating the bot
+description: A guide on how to update the sentinel tickets bot.
+---
+
+import { Steps, Code, Aside } from "@astrojs/starlight/components";
+
+<Steps>
+
+1. Make a backup of your current bot directory in case of issues so you have the option to revert back.
+
+2. Make sure not to delete your `data` directory otherwise you might run into issues with tickets that you did not delete yet.
+
+3. Download the new release/files and replace the current files with the ones you downloaded.
+
+4. If you already followed the installation process, you can use the latest `config.yml.example` you downloaded to manually add any new config options to your config.yml.
+
+   <Aside type="tip">
+
+   A lightweight option to easily update your config to the latest version is the compare plugin of the notepad++ program.
+
+   </Aside>
+
+5. If any dependencies got updated, you will have to delete your `node_modules` directory and install the dependencies again after you've already uploaded the new files:
+
+   <Code code="npm install" lang="shellscript" />
+
+6. Start the updated bot:
+   <Code code="npm start" lang="shellscript" />
+</Steps>
