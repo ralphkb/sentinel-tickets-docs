@@ -1,0 +1,21 @@
+---
+title: Permissions
+description: A guide on how to setup permissions within the sentinel tickets bot.
+---
+
+import { Code, LinkCard, Aside } from "@astrojs/starlight/components";
+
+You can configure the permission required for each slash command or context menu command to be executed by modifying the `config.yml` section for command permissions.  
+{ }
+The default config has `KickMembers` as a required permission for most commands but this can be easily changed. The idea behind this default value is that your staff roles will likely have the permission to kick members and the bot commands will not be available to all members out of the box, to avoid issues.
+
+<Code code={`alert:\n  enabled: true\n  permission: \"KickMembers\"`} lang="yaml" title="config.yml" />
+
+   <LinkCard
+     title="List of Permissions"
+     description={`Use this page to find a list of usable configuration options for the "permission" of each command.`}
+     href="https://discord-api-types.dev/api/discord-api-types-payloads/common#PermissionFlagsBits"
+     target="_blank"
+   />
+
+   <Aside>You may need to run the `/reload` command after restarting the bot to apply new permission changes.</Aside>

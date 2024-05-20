@@ -19,6 +19,12 @@ export default defineConfig({
             { label: "Updating", link: "/setup/updating/" },
           ],
         },
+        {
+          label: "Configuration",
+          items: [
+            { label: "Permissions", link: "/configuration/permissions/" },
+          ],
+        },
       ],
     }),
   ],
