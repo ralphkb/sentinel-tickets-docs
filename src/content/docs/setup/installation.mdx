@@ -1,0 +1,34 @@
+---
+title: Installation
+description: A guide on how to install the sentinel tickets bot.
+---
+
+import { Steps, Code, LinkCard } from "@astrojs/starlight/components";
+
+<Steps>
+
+1. Install Node.js if not already installed (v18 recommended)
+
+   <LinkCard
+     title="Node.js Installation Guide"
+     description="Follow the Node.js official website steps to install Node.js"
+     href="https://nodejs.org/en/download/package-manager"
+   />
+
+2. Clone the repository: `git clone https://github.com/ralphkb/sentinel-tickets.git` or download the latest [release](https://github.com/ralphkb/sentinel-tickets/releases)
+
+3. Change to the project directory, for example: `cd ticket-bot-project` or the directory where you uploaded the release files.
+
+4. Install the dependencies:
+
+   <Code code="npm install" lang="shellscript" />
+
+5. Rename `.env.example` to `.env` and `config.yml.example` to `config.yml`
+
+6. Open `.env` file and fill it with your bot's token, guild ID and client ID
+
+7. Open `config.yml` to configure the settings and messages to your liking, make sure to properly configure the ticket categories
+
+8. Start the bot:
+      <Code code="npm start" lang="shellscript" />
+</Steps>
