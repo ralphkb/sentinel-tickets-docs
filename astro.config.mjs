@@ -6,6 +6,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "Sentinel Tickets Docs",
+      favicon: "/favicon.ico",
       social: {
         github: "https://github.com/ralphkb/",
         discord: "https://discord.gg/vhXCzj9S3J",
