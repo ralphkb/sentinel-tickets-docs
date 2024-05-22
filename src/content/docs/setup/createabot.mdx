@@ -1,0 +1,46 @@
+---
+title: Creating a discord bot
+description: A guide to help users create a discord bot to setup sentinel tickets.
+---
+
+import { Steps, Aside, LinkCard } from "@astrojs/starlight/components";
+
+<Steps>
+
+1. Open the <a href="https://discord.com/developers/applications" target="_blank">Discord developer portal</a> and log in with your discord account.
+
+2. Click on the `New Application` button.
+
+3. Give your bot a name and proceed by clicking the `Create` button.
+
+4. You can edit your application's name, avatar and description in the `General Information` tab.
+
+5. Open the `Bot` tab, click on the `Add Bot` button and confirm by clicking `Yes, do it!`
+
+6. Scroll down in the `Bot` tab and enable all 3 intents then click on `Save Changes`
+
+   <LinkCard
+     title="Enabling Intents"
+     description="A quick guide to help you enable the intents."
+     href="/faq/common-errors/#disallowed-intents"
+   />
+
+7. You can get the `Client ID` from the `General Information` tab and the bot `Token` from the `Bot` tab to paste them later in your `.env` file.
+
+   <Aside type="danger" title="Warning">
+
+   Never share your bot token with anyone, make sure you only copy paste it into the .env file and then delete it from your clipboard.
+
+   </Aside>
+
+8. To invite the bot to your discord server, head over to the `OAuth2` tab, scroll down and click on both the `bot` and `applications.commands` scope.  
+Click on the `Administrator` permission and your bot invite link will be generated which can be copied via the `Copy` button.
+
+   <Aside type="tip">
+
+   Depending on how you configure the bot, it may not require the `Administrator` permission. You may test to figure out if your setup does not require it.  
+   If you get a console error that says "Missing Permissions" then your bot does need the `Administrator` permission.
+
+   </Aside>
+
+</Steps>

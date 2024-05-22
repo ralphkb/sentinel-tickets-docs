@@ -16,6 +16,7 @@ export default defineConfig({
           label: "Setup",
           items: [
             // Each item here is one entry in the navigation menu.
+            { label: "Creating a discord bot", link: "/setup/createabot/" },
             { label: "Installation", link: "/setup/installation/" },
             { label: "Updating", link: "/setup/updating/" },
           ],
