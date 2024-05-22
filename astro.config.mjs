@@ -24,6 +24,7 @@ export default defineConfig({
         {
           label: "Configuration",
           items: [
+            { label: "Configuration File", link: "/configuration/config/" },
             { label: "Permissions", link: "/configuration/permissions/" },
           ],
         },
