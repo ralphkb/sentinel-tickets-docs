@@ -1,0 +1,28 @@
+---
+title: Common Questions
+description: A list of common questions that may help you with the sentinel tickets bot configuration or setup.
+---
+
+import { Code, Aside } from "@astrojs/starlight/components";
+
+### How to get the ID of a role/channel/category?
+Open the `User Settings` in your discord client then click on `Advanced` and enable `Developer Mode`.  
+![Developer Mode Setting](https://imgur.com/3FATEFC.png)
+
+### How to properly add IDs in the config file?
+Some default options that use IDs have an empty array `[]`, which indicates support for more than one ID.  
+To properly add IDs to it, you should use this format: `configOption: ["ID", "ID", "ID"]`  
+**Examples:**  
+1. `support_role_ids: ["000000000000000000"]`
+2. `support_role_ids: ["000000000000000000", "111111111111111111"]`
+
+### How to use custom emojis in the config file?
+To use custom emojis for buttons or select menus, you need to use the following format:
+<Code code={`emoji: "<:emojiName:ID>"`} lang="yaml" title="config.yml" />  
+Example:  
+<Code code={`emoji: "<:test:0000000000000000000>"`} lang="yaml" title="config.yml" />  
+
+<Aside type="tip">
+  To get the emoji ID, you can send the emoji in chat preceded by a `\`.  
+  For example, if your emoji name was test, you would write `\:test:`
+</Aside>

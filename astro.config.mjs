@@ -28,7 +28,10 @@ export default defineConfig({
         },
         {
           label: "FAQ",
-          items: [{ label: "Common Errors", link: "/faq/common-errors/" }],
+          items: [
+            { label: "Common Questions", link: "/faq/common-questions/" },
+            { label: "Common Errors", link: "/faq/common-errors/" },
+          ],
         },
       ],
     }),
