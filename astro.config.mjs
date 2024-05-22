@@ -26,6 +26,10 @@ export default defineConfig({
             { label: "Permissions", link: "/configuration/permissions/" },
           ],
         },
+        {
+          label: "FAQ",
+          items: [{ label: "Common Errors", link: "/faq/common-errors/" }],
+        },
       ],
     }),
   ],
