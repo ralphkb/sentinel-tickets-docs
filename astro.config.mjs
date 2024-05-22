@@ -8,7 +8,7 @@ export default defineConfig({
       title: "Sentinel Tickets Docs",
       favicon: "/favicon.ico",
       social: {
-        github: "https://github.com/ralphkb/",
+        github: "https://github.com/ralphkb/sentinel-tickets",
         discord: "https://discord.gg/vhXCzj9S3J",
       },
       sidebar: [
