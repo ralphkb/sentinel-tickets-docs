@@ -37,7 +37,7 @@ alertReply:
   time: "120" # The amount of time in seconds, avoid using values which are too high
   reply: "The user replied to the alert and seems to be available." # The reply that will be sent in the ticket if the ticket creator is active and answered`} lang="yaml" title="config.yml" />
 
-### Notes
+#### Notes
 - You can have 2 panels, one with buttons and the other with a select menu. To achieve this send the panel then restart the bot after modifying the `panelMethod` value before sending the panel again. Both panels should work.
 - An example usage of `rolesOnBlacklist` could be if you have a `Muted` role on your server which the bot will then give to blacklisted users until they are no longer blacklisted.
 - `HTML` transcripts are recommended over `TXT` because of how much better they look.
@@ -102,7 +102,7 @@ TicketCategories:
         required: true
         minLength: 50`} lang="yaml" title="config.yml" />
 
-### Notes
+#### Notes
 - This is an example of a configured category, the default config comes with 2 default categories which you can feel free to modify, remove or add more categories.
 - You can create a new category by copying everything and pasting it right below the last category you have in your configuration, then incrementing the `id` by 1. If you are using the default config, that would mean adding a 3rd category with an `id` of `3`.
 - For a more detailed explanation about the permissions section of this configuration, refer to this [*page*](/configuration/permissions/#category-permissions).
@@ -128,7 +128,7 @@ DMUserSettings:
         required: true # If this input is required or not, can be true or false (must be kept to true when there is only 1 question)
         minLength: 80 # Set the minimum number of characters required for submission`} lang="yaml" title="config.yml" />
 
-### Notes
+#### Notes
 - In this configuration section, feel free to enable or disable any of the 3 options `embed`, `transcript` or `ratingSystem`'s enabled to customize what is sent in a user's DMs after a ticket gets deleted.
 - Disabling all 3 options will disable the DM entirely.
 - You can configure the emoji used in the feedback menu in the user's DM alongside adding more questions to the feedback modal.
@@ -245,7 +245,7 @@ contextMenuCommands:
     enabled: true
     permission: "ManageChannels"`} lang="yaml" title="config.yml" />
 
-### Notes
+#### Notes
 - In this section you can enable/disable commands, configure their permissions and some command-specific settings explained in their respective comments.
 - For a more streamlined experience, it's recommended that you configure the permissions based on a common permission between your support roles.  
 The default configuration assumes your support staff have the permission to kick members, so they will have access to the commands. Feel free to modify this to fit your use-case.
@@ -298,7 +298,7 @@ newTicketButton:
   label: "Click Here" # The label of the button
   emoji: "🎫" # The emoji of the button`} lang="yaml" title="config.yml" />
 
-### Notes
+#### Notes
 - For a detailed explanation on how to use custom emojis in this section or also in the ticket category button and menu emojis, take a look at this [*page*](/faq/common-questions/#how-to-use-custom-emojis-in-the-config-file).
 
 ## Working Hours Settings
@@ -346,7 +346,7 @@ workingHours:
   valueDays: "TODAY" # Options are: "TODAY" which will only show today's working hours or "ALL" which will show the configured working hours for each day
   fieldValue: "> {day}: {openingTime} to {closingTime}" # The value of each working hours field, use {day} for today's day of the week, {openingTime} for the opening time and {closingTime} for the closing time`} lang="yaml" title="config.yml" />
 
-### Notes
+#### Notes
 - If you enable the working hours feature, make sure to always configure the min and max hours in the format `"HH:MM"`.
 - Configure the timezone based on your own, so that the bot's working hours will function in an hour range familiar to you or your community.
 
@@ -398,7 +398,7 @@ logs:
   blacklistAdd: ""
   blacklistRemove: ""`} lang="yaml" title="config.yml" />
 
-### Notes
+#### Notes
 - It would be best to keep all the toggled Logs enabled so you can always search back in the logs channels to find information that might be useful when you need it.
 - Make sure to always at least configure the default log channel ID, the bot will error out without it because it's the main fallback for all the logs.
 
@@ -421,10 +421,11 @@ outsideWorkingHoursEmbed:
     iconURL: ""
     url: ""`} lang="yaml" title="config.yml" />
 
-### Notes
+#### Notes
 - This section only provides the example configuration for one embed because all of them are the same. Note that only a few embeds might not have all the options due to them being dynamic or overriden by necessary code.  
 For example, the ticket created embed configuration does not support description and color because you already configure those options per ticket category.
 - Some embeds might have commented out options like footer text and iconURL, that's in order to use the default values which can be more unique per user such as the user's username and avatar as a footer.
+- A few embeds might have unique options such as fields or options to disable buttons like on the close embed.
 - The config comments will mention when you cannot use one of the embeds options for a specific embed, so you will be aware.
 
 ## DM Embeds Locale
@@ -447,7 +448,7 @@ alertDMEmbed:
     iconURL: ""
     url: ""`} lang="yaml" title="config.yml" />
 
-### Notes
+#### Notes
 - Similar to the embeds locale section, however an extra option exists for some of the DM embeds called `enabled`. To enable the DM embeds that have this option, you must put `enabled: true`.
 
 ## Misc Locale
@@ -457,7 +458,7 @@ errors:
   not_in_a_ticket: "You are not in a ticket channel!" # Error displayed when a user tries to use a command in a non-ticket channel
   not_allowed: "You are not allowed to use this!" # Error displayed when a user tries to use a staff-only command, button etc`} lang="yaml" title="config.yml" />
 
-### Notes
+#### Notes
 - You can configure error messages in this section and a few more embeds.
 
 ## Logs.txt channel settings
@@ -470,5 +471,5 @@ errors:
 logsFileToChannel: false # False by default, unless you need it don't enable it
 logsFileChannelID: ""`} lang="yaml" title="config.yml" />
 
-### Notes
+#### Notes
 - Due to potential issues with rate limits, the bot will only send errors and not other logs to a discord channel if this option is enabled.
