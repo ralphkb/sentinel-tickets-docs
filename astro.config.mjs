@@ -9,6 +9,9 @@ export default defineConfig({
       plugins: [starlightImageZoom()],
       title: "Sentinel Tickets Docs",
       favicon: "/favicon.ico",
+      components: {
+        SocialIcons: "./src/components/SocialIcons.astro",
+      },
       social: {
         github: "https://github.com/ralphkb/sentinel-tickets",
         discord: "https://discord.gg/vhXCzj9S3J",
