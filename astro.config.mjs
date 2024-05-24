@@ -15,6 +15,7 @@ export default defineConfig({
       social: {
         github: "https://github.com/ralphkb/sentinel-tickets",
         discord: "https://discord.gg/vhXCzj9S3J",
+        email: "mailto:ralph@ralphk.dev",
       },
       sidebar: [
         {
