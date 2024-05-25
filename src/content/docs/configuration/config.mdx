@@ -1,7 +1,7 @@
 ---
 title: Configuration File
 description: A guide on how to configure the sentinel tickets bot using the config.yml
-lastUpdated: 2024-05-22
+lastUpdated: 2024-05-25
 ---
 import { Code, LinkCard, Aside } from "@astrojs/starlight/components";
 
@@ -10,9 +10,6 @@ The config already comes with a lot of comments explaining each option but this 
 ## Ticket bot general settings
 
 <Code code={`
-panelMethod: "Buttons" # The method of the panel, can be either Buttons or Menu
-maxButtonsPerRow: "5" # The maximum number of buttons per row, note that this will reduce the total amount of categories you can create due to a limitation of 5 rows per message
-menuPlaceholder: "Select a category to open a ticket." # The placeholder of the select menu
 rolesThatCanBlacklist: ["111111111111111111"] # The IDs of the staff roles on your server which should have access to blacklisting and unblacklisting users from creating tickets, for example ["000000000000000000", "111111111111111111"]
 rolesOnBlacklist: [] # The IDs of the roles that the bot will add to blacklisted users, leave it empty to disable this feature
 blacklistCleanup: "120" # The amount of time in seconds between blacklist cleanup checks, to automatically remove expired blacklisted users/roles
@@ -108,6 +105,37 @@ TicketCategories:
 - For a more detailed explanation about the permissions section of this configuration, refer to this [*page*](/configuration/permissions/#category-permissions).
 - To create additional questions, you can copy one of the current questions and paste it right your last question. You can have up to 5 questions at most and you need to make sure each question has a configured `label`, `placeholder`, `style`, `required` and `minLength` option.
 - Currently, the bot does not support working without questions so you should at least make sure to use 1 question in each category you create.
+
+## Multi Panel settings
+
+<Code code={`
+panels:
+  - id: 1 # Unique ID for each panel
+    categories: ["1, 2"] # The categories that the panel will contain, use the IDs of the categories above, make sure they are valid and don't leave it empty
+    maxButtonsPerRow: "5" # The maximum number of buttons per row, note that this will reduce the total amount of categories you can create due to a limitation of 5 rows per message
+    menuPlaceholder: "Select a category to open a ticket." # The placeholder of the select menu
+    panelEmbed:
+      color: "#2FF200"
+      title: "Support Tickets"
+      description: "To create a support ticket, click on one of the buttons below depending on what help you need." # Use \n to create a new line for this embed description if needed
+      timestamp: true
+      URL: ""
+      image: ""
+      thumbnail: ""
+      footer:
+        text: "Sentinel Tickets"
+        iconURL: ""
+      author:
+        name: ""
+        iconURL: ""
+        url: ""`} lang="yaml" title="config.yml" />
+
+#### Notes
+- You can setup multiple panels in this section, you can also use the `categories` array to organize the categories in the panel as you wish. The default value is `["1, 2"]` but `["2, 1"]` works too.
+- The `id` of each panel must be an integer, it is suggested to just increment it by 1 for each new panel.
+- The usage of the `/panel` command is `/panel id layout`, the id is required and is the id of the panel you want to send, while the layout is a choice between 2 options `Buttons` or `Menu`.
+- You can configure a unique embed for each panel.
+- If you updated from a previous version of the bot before multi panels were added, please re-send your panels after you finish upgrading your configuration.
 
 ## Ticket DM user settings
 
@@ -240,10 +268,7 @@ contextMenuCommands:
     permission: "KickMembers"
   ticketTranscript:
     enabled: true
-    permission: "KickMembers"
-  ticketPanel:
-    enabled: true
-    permission: "ManageChannels"`} lang="yaml" title="config.yml" />
+    permission: "KickMembers"`} lang="yaml" title="config.yml" />
 
 #### Notes
 - In this section you can enable/disable commands, configure their permissions and some command-specific settings explained in their respective comments.
