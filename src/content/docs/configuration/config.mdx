@@ -1,7 +1,7 @@
 ---
 title: Configuration File
 description: A guide on how to configure the sentinel tickets bot using the config.yml
-lastUpdated: 2024-05-25
+lastUpdated: 2024-05-28
 ---
 import { Code, LinkCard, Aside } from "@astrojs/starlight/components";
 
@@ -16,6 +16,7 @@ blacklistCleanup: "120" # The amount of time in seconds between blacklist cleanu
 transcriptType: "HTML" # The type of transcript, can be "HTML" or "TXT"
 reOpenStaffOnly: false # When enabled, only staff members with support roles can reopen a ticket
 closeStaffOnly: true # When enabled, only staff members with support roles can use the close ticket button
+deleteStaffOnly: true # When enabled, only staff members with support roles can use the delete ticket button, it's recommended to keep this option enabled unless you intend to use the allowedRoles array feature while configuring the buttons down in the config
 commands_cooldown: "5" # The cooldown of commands in seconds
 buttons_cooldown: "5" # The cooldown of buttons in seconds
 maxOpenTickets: "1" # The maximum number of open tickets a user can have at one time
@@ -293,11 +294,13 @@ closeButton:
   label: "Close" # The label of the button
   emoji: "🔒" # The emoji of the button
   style: "Danger" # Options: "Primary" which is blurple, "Secondary" which is grey, "Success" which is green, "Danger" which is red and do NOT use "Link"
+  allowedRoles: [] # The IDs of the roles that can use the close button, keep it empty to not require a role
 
 reOpenButton:
   label: "Reopen" # The label of the button
   emoji: "🔓" # The emoji of the button
   style: "Success" # Options: "Primary" which is blurple, "Secondary" which is grey, "Success" which is green, "Danger" which is red and do NOT use "Link"
+  allowedRoles: [] # The IDs of the roles that can use the reopen button, keep it empty to not require a role
 
 transcriptButton:
   label: "Transcript" # The label of the button
@@ -308,6 +311,7 @@ deleteButton:
   label: "Delete" # The label of the button
   emoji: "⛔" # The emoji of the button
   style: "Danger" # Options: "Primary" which is blurple, "Secondary" which is grey, "Success" which is green, "Danger" which is red and do NOT use "Link"
+  allowedRoles: [] # The IDs of the roles that can use the delete button, keep it empty to not require a role
 
 claimButton:
   label: "Claim" # The label of the button
@@ -325,6 +329,7 @@ newTicketButton:
 
 #### Notes
 - For a detailed explanation on how to use custom emojis in this section or also in the ticket category button and menu emojis, take a look at this [*page*](/faq/common-questions/#how-to-use-custom-emojis-in-the-config-file).
+- The `allowedRoles` array allows you to specify roles needed to use the specific button. Keep in mind that disabling the `reOpenStaffOnly`, `closeStaffOnly` & `deleteStaffOnly` config options might be the best option if you intend to use the `allowedRoles` array.
 
 ## Working Hours Settings
 
