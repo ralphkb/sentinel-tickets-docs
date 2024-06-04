@@ -1,7 +1,7 @@
 ---
 title: Configuration File
 description: A guide on how to configure the sentinel tickets bot using the config.yml
-lastUpdated: 2024-05-28
+lastUpdated: 2024-06-04
 ---
 import { Code, LinkCard, Aside } from "@astrojs/starlight/components";
 
@@ -58,6 +58,20 @@ TicketCategories:
           allow: [] # The bot will allow those permissions to the ticket creator in a closed ticket
           deny: ["SendMessages"] # The bot will deny those permissions from the ticket creator in a closed ticket
       supportRoles:
+        open:
+          allow: ["ViewChannel", "SendMessages", "EmbedLinks", "AttachFiles", "ReadMessageHistory"]
+          deny: []
+        close:
+          allow: []
+          deny: ["SendMessages"]
+      addedRoles:
+        open:
+          allow: ["ViewChannel", "SendMessages", "EmbedLinks", "AttachFiles", "ReadMessageHistory"]
+          deny: []
+        close:
+          allow: []
+          deny: ["SendMessages"]
+      addedUsers:
         open:
           allow: ["ViewChannel", "SendMessages", "EmbedLinks", "AttachFiles", "ReadMessageHistory"]
           deny: []
@@ -192,7 +206,6 @@ commands:
     permission: "KickMembers"
     pingUser: false # Ping the new ticket creator
     updateTopic: true # Update the channel topic
-    newTopic: "Ticket Creator: {user} | Ticket Type: {type}" # Use {user} for the new ticket creator the ticket is transferred to and {type} for the ticket type
   pin:
     enabled: true
     permission: "KickMembers"
@@ -250,6 +263,9 @@ commands:
   help:
     enabled: true
     permission: "KickMembers"
+  preference:
+    enabled: false
+    permission: "ViewChannel"
 
 contextMenuCommands:
   userInfo:
