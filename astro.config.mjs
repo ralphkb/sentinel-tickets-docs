@@ -7,7 +7,7 @@ export default defineConfig({
   integrations: [
     starlight({
       plugins: [starlightImageZoom()],
-      title: "Sentinel Tickets Docs",
+      title: "Sentinel Tickets",
       favicon: "/favicon.ico",
       components: {
         SocialIcons: "./src/components/SocialIcons.astro",
