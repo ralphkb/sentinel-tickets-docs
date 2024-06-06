@@ -1,5 +1,9 @@
 {
   "name": "sentinel-tickets-docs",
+  "private": true,
+  "description": "Documentation website for the Sentinel Tickets open source discord bot.",
+  "author": "ralphkb",
+  "license": "MIT",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -10,9 +14,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.23.1",
-    "astro": "^4.8.6",
-    "sharp": "^0.32.5",
+    "@astrojs/starlight": "^0.24.0",
+    "astro": "^4.9.3",
+    "sharp": "^0.33.4",
     "starlight-image-zoom": "^0.5.0"
   }
 }
