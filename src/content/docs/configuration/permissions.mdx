@@ -1,7 +1,7 @@
 ---
 title: Permissions
 description: A guide on how to setup permissions within the sentinel tickets bot.
-lastUpdated: 2024-05-22
+lastUpdated: 2024-08-11
 ---
 
 import { Code, LinkCard, Aside } from "@astrojs/starlight/components";
@@ -23,7 +23,7 @@ The default config has `KickMembers` as a required permission for most commands 
    <Aside>You may need to run the `/reload` command after restarting the bot to apply new permission changes.</Aside>
 
 ## Category Permissions
-The bot currently supports configuring the permissions of the ticket creator and support roles for each ticket category.  
+The bot currently supports configuring the following permissions: ticket creator, support roles, added roles and added users for each ticket category.  
 The way it works is by having configuration options to allow/deny permissions for both open and closed tickets. This way you can customize the permissions that best fit your use-case.  
 
 <Code code={`
@@ -42,9 +42,24 @@ permissions:
     close:
       allow: []
       deny: ["SendMessages"]
+  addedRoles:
+    open:
+      allow: ["ViewChannel", "SendMessages", "EmbedLinks", "AttachFiles", "ReadMessageHistory"]
+      deny: []
+    close:
+      allow: []
+      deny: ["SendMessages"]
+  addedUsers:
+    open:
+      allow: ["ViewChannel", "SendMessages", "EmbedLinks", "AttachFiles", "ReadMessageHistory"]
+      deny: []
+    close:
+      allow: []
+      deny: ["SendMessages"]
 `} lang="yaml" title="config.yml" />
 
-The default values will give both the ticket creator and support roles the 5 permissions in the allow array on newly created tickets and re-opened tickets. It will also deny the Send Messages permission for both of them in the case of a closed ticket.
+The default values will give the ticket creator, support roles, added roles and added users the 5 permissions in the allow array on newly created tickets and re-opened tickets. It will also deny the Send Messages permission for all of them in the case of a closed ticket.  
+Note that added roles and added users are the roles/users added via the `/add` command.
 
 <Aside type="caution" title="Warning">
   Depending on the permissions you put in the ticket categories, you may need to give your bot **Administrator** permissions to function properly.  
@@ -54,7 +69,7 @@ The default values will give both the ticket creator and support roles the 5 per
 ### Examples
 
 #### Example 1
-Adding "ViewChannels" to the deny permissions of the ticketCreator in the close permissions, then they cannot see the channel anymore when a ticket gets closed and by having "ViewChannels" in the allow permissions of the ticketCreator, it will be added again on re-open.  
+Adding `ViewChannels` to the deny permissions of the ticketCreator in the close permissions, then they cannot see the channel anymore when a ticket gets closed and by having `ViewChannels` in the allow permissions of the ticketCreator, it will be added again on re-open.  
 <Code code={`
 permissions:
   ticketCreator:
@@ -74,7 +89,7 @@ permissions:
 `} lang="yaml" title="config.yml" />  
 
 #### Example 2
-Leaving the close allow or deny permissions empty for the support roles leads to the them keeping their permission upon the closure of a ticket. This means they would be able to chat in closed tickets.  
+Leaving the close deny permissions empty for the support roles leads to them keeping their permissions upon the closure of a ticket. This means they would be able to chat in closed tickets.  
 <Code code={`
 permissions:
   ticketCreator:

@@ -1,7 +1,7 @@
 ---
 title: Configuration File
 description: A guide on how to configure the sentinel tickets bot using the config.yml
-lastUpdated: 2024-06-04
+lastUpdated: 2024-08-11
 ---
 import { Code, LinkCard, Aside } from "@astrojs/starlight/components";
 
@@ -14,6 +14,7 @@ rolesThatCanBlacklist: ["111111111111111111"] # The IDs of the staff roles on yo
 rolesOnBlacklist: [] # The IDs of the roles that the bot will add to blacklisted users, leave it empty to disable this feature
 blacklistCleanup: "120" # The amount of time in seconds between blacklist cleanup checks, to automatically remove expired blacklisted users/roles
 transcriptType: "HTML" # The type of transcript, can be "HTML" or "TXT"
+transcriptImages: false # Enable or disable saving images in HTML transcripts, note that this will increase the size of the transcript and the time taken to generate it
 reOpenStaffOnly: false # When enabled, only staff members with support roles can reopen a ticket
 closeStaffOnly: true # When enabled, only staff members with support roles can use the close ticket button
 deleteStaffOnly: true # When enabled, only staff members with support roles can use the delete ticket button, it's recommended to keep this option enabled unless you intend to use the allowedRoles array feature while configuring the buttons down in the config
@@ -32,8 +33,32 @@ status:
   botStatus: "online" # The status of the bot, can be "online", "idle", "dnd", "invisible", note that the streaming type requires the "online" status
 alertReply:
   enabled: false # Enable or disable listening to the ticket creator reply for the amount of time specified in the config below, after the alert is sent.
-  time: "120" # The amount of time in seconds, avoid using values which are too high
-  reply: "The user replied to the alert and seems to be available." # The reply that will be sent in the ticket if the ticket creator is active and answered`} lang="yaml" title="config.yml" />
+  time: "300" # The amount of time in seconds, avoid using values which are too high
+  reply: "The user replied to the alert and seems to be available." # The reply that will be sent in the ticket if the ticket creator is active and answered
+  autoAction: "none" # The automated action the bot will take if the user did not reply within the time defined above, can be "close" or "delete" which will either automatically close or delete their ticket, you may also put it as "none" to disable the automation
+autoCloseTickets:
+  enabled: false # Enable or disable automatically closing tickets
+  interval: "60" # The interval in seconds for the automatic ticket close task to run
+  time: "86400" # The amount of time in seconds from the ticket creator's last message before the ticket gets automatically closed. For example, if this is specified as 1 day in seconds, the ticket will be closed if the last message sent by the ticket creator is 1 day old. Default time is 1 day.
+autoDeleteTickets:
+  enabled: false # Enable or disable automatically deleting closed tickets
+  interval: "60" # The interval in seconds for the automatic ticket delete task to run
+  time: "86400" # The amount of time in seconds from the ticket "closed at" time before the ticket gets automatically deleted. For example, if this is specified as 1 day in seconds, the ticket will be deleted if it was closed 1 day ago without it being reopened by anyone. Default time is 1 day.
+onUserLeave: "close" # The automated action the bot will take when a user leaves the server while having a ticket open, can be "close" or "delete" which will either automatically close or delete their ticket, you may also put it as "none" to disable the automation
+statsChannels:
+  enabled: false # Enable or disable the stats channels
+  interval: "600" # The interval in seconds for the stats channels to update, cannot be lower than 600 which is 10 minutes in order to avoid discord channel rename rate limits
+  channels:
+    - channelID: "111111111111111111" # The ID of the voice channel that will be renamed frequently with the updated stats
+      type: "totalTickets" # The type of statistic to display, the options are the following: totalTickets, openTickets, totalClaims, totalReviews, ratings, totalMessages, ticketCreators, avgTicketCreators
+      name: "Total Tickets: {stats}" # The name of the stats channel, use the placeholder {stats} to display the result of the stats based on the type selected above
+    - channelID: "111111111111111111"
+      type: "openTickets"
+      name: "Total Open Tickets: {stats}"
+    - channelID: "111111111111111111"
+      type: "ratings"
+      name: "Average Rating: {stats}/5.0"
+`} lang="yaml" title="config.yml" />
 
 #### Notes
 - You can have 2 panels, one with buttons and the other with a select menu. To achieve this send the panel then restart the bot after modifying the `panelMethod` value before sending the panel again. Both panels should work.
@@ -46,6 +71,7 @@ alertReply:
 TicketCategories:
   - id: 1 # Unique ID for each category, ONLY USE NUMBERS (It is suggested to just increment this value by 1 each time)
     name: "report" # The name of the category, it will be in lowercase anyways
+    nameEmoji: "⌛️" # The emoji of the category name, "⌛️report" in that case or make it "⌛️-" to get "⌛️-report", you may also leave it as an empty string "" to use no emojis
     categoryID: ["111111111111111111"] # The IDs of the categories where those tickets will be created, for example ["000000000000000000", "111111111111111111"]
     closedCategoryID: ["111111111111111111"] # The IDs of the categories where the closed tickets will go, for example ["000000000000000000", "111111111111111111"]
     support_role_ids: ["000000000000000000", "111111111111111111"] # The IDs of the staff roles on your server that can access only this ticket category, for example ["000000000000000000", "111111111111111111"]
@@ -112,7 +138,8 @@ TicketCategories:
         placeholder: "Explain with details"
         style: "Paragraph"
         required: true
-        minLength: 50`} lang="yaml" title="config.yml" />
+        minLength: 50
+        maxLength: 1000 # Set the maximum number of characters allowed for submission, only works for Paragraph style and the limit is 1000`} lang="yaml" title="config.yml" />
 
 #### Notes
 - This is an example of a configured category, the default config comes with 2 default categories which you can feel free to modify, remove or add more categories.
@@ -163,13 +190,15 @@ DMUserSettings:
     menu:
       emoji: "⭐"
       placeholder: "Select a Rating"
+    modal: true # Enable or disable sending a feedback modal in the DM, if disabled then the users will only provide a rating from 1 to 5   
     modalTitle: "Ticket Feedback"
     questions: # Maximum number of questions is 5, you must keep a minimum of 1 to use this feature
       - label: "What is your feedback?"
         placeholder: "Write your feedback here."
         style: "Paragraph" # Short or Paragraph
         required: true # If this input is required or not, can be true or false (must be kept to true when there is only 1 question)
-        minLength: 80 # Set the minimum number of characters required for submission`} lang="yaml" title="config.yml" />
+        minLength: 80 # Set the minimum number of characters required for submission
+        maxLength: 1000 # Set the maximum number of characters allowed for submission, only works for Paragraph style and the limit is 1000`} lang="yaml" title="config.yml" />
 
 #### Notes
 - In this configuration section, feel free to enable or disable any of the 3 options `embed`, `transcript` or `ratingSystem`'s enabled to customize what is sent in a user's DMs after a ticket gets deleted.
@@ -248,6 +277,9 @@ commands:
   rename:
     enabled: true
     permission: "KickMembers"
+  topic:
+    enabled: true
+    permission: "KickMembers"
   blacklist:
     enabled: true
     permission: "KickMembers"
@@ -266,6 +298,7 @@ commands:
   preference:
     enabled: false
     permission: "ViewChannel"
+    defaultDM: true # The default value of the preference
 
 contextMenuCommands:
   userInfo:
@@ -353,6 +386,7 @@ newTicketButton:
 workingHours:
   enabled: false # Enable or disable the working hours feature
   timezone: "Europe/Paris" # The timezone of the working hours, options on this link should work: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  bypassRoles: [] # The IDs of the roles that can bypass the working hours block ticket creation, keep it empty to turn off this feature
   default: # The default working hours for any day that is not specified below
     min: "09:00"
     max: "17:00"
@@ -399,7 +433,6 @@ workingHours:
 ## Log channels
 
 <Code code={`
-# In this section you can enable/disable certain logs. By default all logs are enabled.
 toggleLogs:
   userAdd: true
   userRemove: true
@@ -411,6 +444,7 @@ toggleLogs:
   ticketUnclaim: true
   ticketMove: true
   ticketRename: true
+  ticketTopic: true
   ticketTransfer: true
   ticketPin: true
   ticketSlowmode: true
@@ -435,6 +469,7 @@ logs:
   ticketUnclaim: ""
   ticketMove: ""
   ticketRename: ""
+  ticketTopic: ""
   ticketTransfer: ""
   ticketPin: ""
   ticketSlowmode: ""
@@ -481,7 +516,7 @@ alertDMEmbed:
   enabled: false
   color: "#FF0000"
   title: "Ticket Close Notification"
-  description: "Your ticket **#{ticketName}** in **{server}** will be closed soon if no response has been received."
+  description: "Your ticket **#{ticketName}** in **{server}** will be closed soon if no response has been received." # You can use {ticketName} for the name of the ticket, {server} for your server name & \n for a new line
   timestamp: false
   URL: ""
   image: ""
