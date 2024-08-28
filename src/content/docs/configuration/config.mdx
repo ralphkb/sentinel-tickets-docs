@@ -1,7 +1,7 @@
 ---
 title: Configuration File
 description: A guide on how to configure the sentinel tickets bot using the config.yml
-lastUpdated: 2024-08-11
+lastUpdated: 2024-08-28
 ---
 import { Code, LinkCard, Aside } from "@astrojs/starlight/components";
 
@@ -34,7 +34,6 @@ status:
 alertReply:
   enabled: false # Enable or disable listening to the ticket creator reply for the amount of time specified in the config below, after the alert is sent.
   time: "300" # The amount of time in seconds, avoid using values which are too high
-  reply: "The user replied to the alert and seems to be available." # The reply that will be sent in the ticket if the ticket creator is active and answered
   autoAction: "none" # The automated action the bot will take if the user did not reply within the time defined above, can be "close" or "delete" which will either automatically close or delete their ticket, you may also put it as "none" to disable the automation
 autoCloseTickets:
   enabled: false # Enable or disable automatically closing tickets
@@ -298,6 +297,13 @@ commands:
     enabled: false
     permission: "ViewChannel"
     defaultDM: true # The default value of the preference
+  tickets:
+    enabled: true
+    permission: "ViewChannel"
+    support_role_ids: [] # The IDs of the staff roles on your server that can use this command's user argument to see the list of current tickets of other users, they must also have the permission above, keeping it empty will allow no roles to access the list of current tickets of other users.
+  userInfo:
+    enabled: true
+    permission: "KickMembers"
 
 contextMenuCommands:
   userInfo:
@@ -316,6 +322,18 @@ contextMenuCommands:
     enabled: true
     permission: "KickMembers"
   ticketTranscript:
+    enabled: true
+    permission: "KickMembers"
+  ticketsList: # Note that this command shares the same support_role_ids array as the tickets slash command above.
+    enabled: true
+    permission: "ViewChannel"
+  ticketCloseRequest:
+    enabled: true
+    permission: "ViewChannel"
+  ticketClaim:
+    enabled: true
+    permission: "KickMembers"
+  ticketUnclaim:
     enabled: true
     permission: "KickMembers"`} lang="yaml" title="config.yml" />
 
