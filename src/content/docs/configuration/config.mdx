@@ -1,7 +1,7 @@
 ---
 title: Configuration File
 description: A guide on how to configure the sentinel tickets bot using the config.yml
-lastUpdated: 2024-08-28
+lastUpdated: 2024-09-11
 ---
 import { Code, LinkCard, Aside } from "@astrojs/starlight/components";
 
@@ -173,7 +173,7 @@ panels:
 #### Notes
 - You can setup multiple panels in this section, you can also use the `categories` array to organize the categories in the panel as you wish. The default value is `["1, 2"]` but `["2, 1"]` works too.
 - The `id` of each panel must be an integer, it is suggested to just increment it by 1 for each new panel.
-- The usage of the `/panel` command is `/panel id layout`, the id is required and is the id of the panel you want to send, while the layout is a choice between 2 options `Buttons` or `Menu`.
+- The usage of the `/panel` command is `/panel id layout`, the id is required and is the id of the panel you want to send, while the layout is a choice between 2 options `Buttons` or `Menu`. Example usage: `/panel id: 1 layout: Menu`
 - You can configure a unique embed for each panel.
 - If you updated from a previous version of the bot before multi panels were added, please re-send your panels after you finish upgrading your configuration.
 
@@ -201,6 +201,7 @@ DMUserSettings:
 #### Notes
 - In this configuration section, feel free to enable or disable any of the 3 options `embed`, `transcript` or `ratingSystem`'s enabled to customize what is sent in a user's DMs after a ticket gets deleted.
 - Disabling all 3 options will disable the DM entirely.
+- Setting `modal: false` will disable the questions, which means the user will only provide a rating from 1 to 5.
 - You can configure the emoji used in the feedback menu in the user's DM alongside adding more questions to the feedback modal.
 - The questions can be configured the same way as the questions of a ticket category configuration.
 
@@ -339,6 +340,8 @@ contextMenuCommands:
 
 #### Notes
 - In this section you can enable/disable commands, configure their permissions and some command-specific settings explained in their respective comments.
+- Some commands have optional options that allow you to add a reason, such as ticket close, delete etc. Given that it's optional, you may edit the embeds/log embeds to avoid displaying the reason if you don't want to use it.
+- The tickets list slash and context menu commands share the same array for `support_role_ids` that are allowed to use it. The default behavior is to deny the usage of the optional user option because otherwise any member can see a list of current tickets of any other member. Configure this as you see fit, such as allowing your staff roles to execute the command on any user.
 - For a more streamlined experience, it's recommended that you configure the permissions based on a common permission between your support roles.  
 The default configuration assumes your support staff have the permission to kick members, so they will have access to the commands. Feel free to modify this to fit your use-case.
 
@@ -446,6 +449,7 @@ workingHours:
 #### Notes
 - If you enable the working hours feature, make sure to always configure the min and max hours in the format `"HH:MM"`.
 - Configure the timezone based on your own, so that the bot's working hours will function in an hour range familiar to you or your community.
+- The bypass roles feature may be useful to people who have specific roles that get higher priority support.
 
 ## Log channels
 
@@ -498,7 +502,7 @@ logs:
 
 #### Notes
 - It would be best to keep all the toggled Logs enabled so you can always search back in the logs channels to find information that might be useful when you need it.
-- Make sure to always at least configure the default log channel ID, the bot will error out without it because it's the main fallback for all the logs.
+- Make sure to always at least configure the default log channel ID, the bot will log an error without it because it's the main fallback for all the logs.
 
 ## Embeds Locale
 
