@@ -14,9 +14,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.28.5",
-    "astro": "^4.16.8",
+    "@astrojs/starlight": "^0.28.6",
+    "astro": "^4.16.10",
     "sharp": "^0.33.5",
-    "starlight-image-zoom": "^0.8.0"
+    "starlight-image-zoom": "^0.9.0"
   }
 }
