@@ -23,6 +23,13 @@ To properly add IDs to it, you should use this format: `configOption: ["ID", "ID
 1. `support_role_ids: ["000000000000000000"]`
 2. `support_role_ids: ["000000000000000000", "111111111111111111"]`
 
+<Aside>
+  If your permissions or anything related to arrays of IDs is not working correctly, you most likely forgot to add the quotes `""` while adding the IDs.  
+  You would have to change something like this:   
+  `support_role_ids: [000000000000000000, 111111111111111111]`   
+  to this: `support_role_ids: ["000000000000000000", "111111111111111111"]` to fix the issue.
+</Aside>
+
 ### How to use custom emojis in the config file?
 To use custom emojis for buttons or select menus, you need to use the following format:
 <Code code={`emoji: "<:emojiName:ID>"`} lang="yaml" title="config.yml" />  
