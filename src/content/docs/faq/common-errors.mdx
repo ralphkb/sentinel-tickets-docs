@@ -1,7 +1,7 @@
 ---
 title: Common Errors
 description: A list of common errors you may encounter with the sentinel tickets bot.
-lastUpdated: 2024-12-23
+lastUpdated: 2024-12-26
 ---
 
 ### Disallowed Intents
@@ -21,3 +21,6 @@ Double check your `.env` file and ensure the client ID and guild ID are correct.
 
 ### YAMLParseError
 If you run into an error like that then the issue comes from the configuration. It's recommended you read the error message to figure out where it is and you could assist yourself in finding the error by using a YAML linter such as https://www.yamllint.com/ or https://jsonformatter.org/yaml-validator
+
+### Missing Permissions
+You may get this error if the bot is missing permissions to perform specific required actions. In that case, to fix the issue you will need to give the bot permissions either via category, channel or role permissions. You may also need to give the bot the `Administrator` permission to use all the features without issues.
