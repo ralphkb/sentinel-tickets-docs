@@ -1,7 +1,7 @@
 ---
 title: Configuration File
 description: A guide on how to configure the sentinel tickets bot using the config.yml
-lastUpdated: 2024-12-27
+lastUpdated: 2024-12-30
 ---
 import { Code, LinkCard, Aside } from "@astrojs/starlight/components";
 
@@ -68,6 +68,7 @@ statsChannels:
 - `HTML` transcripts are recommended over `TXT` because of how much better they look.
 - `deleteTicketTime` is the amount of time in seconds that the bot will wait before deleting the ticket channel after you click the delete button or use the `/delete` command.
 - The `alertReply` time in the config is only the default time, you can input a custom time in seconds when using the `alert` slash command.
+- The `closeRequest` slash command will be disabled as long as `closeStaffOnly` is set to `false` since the users would already have the permission to close their own tickets.
 ## Ticket Category settings
 
 <Code code={`
@@ -406,7 +407,12 @@ unclaimButton:
 
 newTicketButton:
   label: "Click Here" # The label of the button
-  emoji: "🎫" # The emoji of the button`} lang="yaml" title="config.yml" />
+  emoji: "🎫" # The emoji of the button
+
+closeRequestButton:
+  label: "Accept & Close" # The label of the button
+  emoji: "✅" # The emoji of the button
+  style: "Success" # Options: "Primary" which is blurple, "Secondary" which is grey, "Success" which is green, "Danger" which is red and do NOT use "Link"`} lang="yaml" title="config.yml" />
 
 #### Notes
 - For a detailed explanation on how to use custom emojis in this section or also in the ticket category button and menu emojis, take a look at this [*page*](/faq/common-questions/#how-to-use-custom-emojis-in-the-config-file).
