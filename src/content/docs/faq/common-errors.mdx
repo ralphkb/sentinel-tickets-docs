@@ -1,7 +1,7 @@
 ---
 title: Common Errors
 description: A list of common errors you may encounter with the sentinel tickets bot.
-lastUpdated: 2024-12-27
+lastUpdated: 2024-12-31
 ---
 
 ### Disallowed Intents
@@ -14,7 +14,7 @@ Make sure that you renamed your `.env.example` to `.env` then fill it with the c
 
 ### Could not locate the bindings file
 This error is related to your `node_modules` directory. To fix this issue, check your NodeJS version and avoid using NodeJS 19 since it can cause such issues sometimes.  
-It's recommended to use the latest version of either NodeJS 18 or 20+, they should be more stable and work properly. After ensuring that, delete your `node_modules` directory and run `npm install` again to reinstall the dependencies, which should fix your issue.
+It's recommended to use the latest version of either Node.js 22 or higher, though Node.js 18, 20 & 21 should work too. After ensuring that, delete your `node_modules` directory and run `npm install` again to reinstall the dependencies, which should fix your issue.
 
 ### Unknown Application
 Double check your `.env` file and ensure the client ID and guild ID are correct. This error mostly happens when your client ID is incorrect, please refer to <a href="/setup/createabot">this page</a> to understand how to get the client ID.
