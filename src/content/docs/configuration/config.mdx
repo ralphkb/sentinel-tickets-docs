@@ -1,7 +1,7 @@
 ---
 title: Configuration File
 description: A guide on how to configure the sentinel tickets bot using the config.yml
-lastUpdated: 2025-02-26
+lastUpdated: 2025-03-04
 ---
 import { Code, LinkCard, Aside } from "@astrojs/starlight/components";
 
@@ -672,6 +672,7 @@ autoResponses:
 
 #### Notes
 - The auto responses triggers will check the ticket modal input by the users and send an embed with the configured responses shortly after the ticket is created.
+- This feature will not stop tickets from being created since automated responses are considered extra information and cannot fully replace a ticket.
 
 ## Logs.txt channel settings
 
