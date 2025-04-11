@@ -12,11 +12,19 @@ export default defineConfig({
       components: {
         SocialIcons: "./src/components/SocialIcons.astro",
       },
-      social: {
-        github: "https://github.com/ralphkb/sentinel-tickets",
-        discord: "https://discord.gg/vhXCzj9S3J",
-        email: "mailto:ralph@ralphk.dev",
-      },
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/ralphkb/sentinel-tickets",
+        },
+        {
+          icon: "discord",
+          label: "Discord",
+          href: "https://discord.gg/vhXCzj9S3J",
+        },
+        { icon: "email", label: "Email", href: "mailto:ralph@ralphk.dev" },
+      ],
       sidebar: [
         {
           label: "Setup",
