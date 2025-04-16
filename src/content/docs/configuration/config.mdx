@@ -127,6 +127,7 @@ TicketCategories:
     ticketTopic: "Ticket Creator: {user} | Ticket Type: {type}" # The topic of the ticket channel
     slowmode: "0" # The slowmode of the ticket channel in seconds, keep it 0 if you don't want a slowmode and do not use negative values
     useCodeBlocks: false # Set this to true if you want to use code blocks to display the answers of the ticket category questions
+    modal: true # Set this to true if you want to use a modal with questions before a ticket gets opened or false if you want the ticket to directly open without questions
     modalTitle: "User Report Format" # The title of the modal
     questions: # Maximum number of questions is 5, you should at least keep 1 question since that information will always help you in any ticket
       - label: "What is your username?"
@@ -151,7 +152,6 @@ TicketCategories:
 - You can create a new category by copying everything and pasting it right below the last category you have in your configuration, then incrementing the `id` by 1. If you are using the default config, that would mean adding a 3rd category with an `id` of `3`.
 - For a more detailed explanation about the permissions section of this configuration, refer to this [*page*](/configuration/permissions/#category-permissions).
 - To create additional questions, you can copy one of the current questions and paste it right below your last question. You can have up to 5 questions at most and you need to make sure each question has a configured `label`, `placeholder`, `style`, `required`, `minLength` and `maxLength` option.
-- Currently, the bot does not support working without questions so you should at least make sure to use 1 question in each category you create.
 
 ## Multi Panel settings
 
