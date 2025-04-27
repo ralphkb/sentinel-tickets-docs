@@ -1,7 +1,7 @@
 ---
 title: Configuration File
 description: A guide on how to configure the sentinel tickets bot using the config.yml
-lastUpdated: 2025-03-04
+lastUpdated: 2025-04-27
 ---
 import { Code, LinkCard, Aside } from "@astrojs/starlight/components";
 
@@ -152,6 +152,7 @@ TicketCategories:
 - You can create a new category by copying everything and pasting it right below the last category you have in your configuration, then incrementing the `id` by 1. If you are using the default config, that would mean adding a 3rd category with an `id` of `3`.
 - For a more detailed explanation about the permissions section of this configuration, refer to this [*page*](/configuration/permissions/#category-permissions).
 - To create additional questions, you can copy one of the current questions and paste it right below your last question. You can have up to 5 questions at most and you need to make sure each question has a configured `label`, `placeholder`, `style`, `required`, `minLength` and `maxLength` option.
+- If you set `modal: false` in a ticket category then a ticket created by a user will be opened instantly without any questions.
 
 ## Multi Panel settings
 
