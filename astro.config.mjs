@@ -4,8 +4,7 @@ import starlightImageZoom from "starlight-image-zoom";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://ralphkb.github.io/",
-  base: "/sentinel-tickets-docs",
+  site: "https://sentineltickets.com",
   integrations: [
     starlight({
       plugins: [starlightImageZoom()],
