@@ -10,6 +10,7 @@ export default defineConfig({
       plugins: [starlightImageZoom()],
       title: "Sentinel Tickets",
       favicon: "/favicon.ico",
+      customCss: ["./src/styles/landing-page.css"],
       components: {
         SocialIcons: "./src/components/SocialIcons.astro",
       },
