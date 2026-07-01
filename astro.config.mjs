@@ -1,10 +1,14 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightImageZoom from "starlight-image-zoom";
+import { unified } from "@astrojs/markdown-remark";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://sentineltickets.com",
+  markdown: {
+    processor: unified(),
+  },
   integrations: [
     starlight({
       plugins: [starlightImageZoom()],
