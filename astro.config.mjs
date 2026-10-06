@@ -29,7 +29,6 @@ export default defineConfig({
           label: "Discord",
           href: "https://discord.gg/vhXCzj9S3J",
         },
-        { icon: "email", label: "Email", href: "mailto:ralph@ralphk.dev" },
       ],
       sidebar: [
         {
